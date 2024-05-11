@@ -1,7 +1,8 @@
-package br.com.serratec.aula05;
+package br.com.serratec.aula05.model;
 
 import java.time.LocalDate;
 
+import br.com.serratec.aula05.dto.ClienteDto;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -19,6 +20,17 @@ public class Cliente {
 	private String cpf;
 	private String email;
 	private LocalDate dataNascimento;
+	
+	public Cliente() {}	
+	
+	public Cliente(Long id, String nome, String cpf, String email, LocalDate dataNascimento) {
+		super();
+		this.id = id;
+		this.nome = nome;
+		this.cpf = cpf;
+		this.email = email;
+		this.dataNascimento = dataNascimento;
+	}
 	
 	public Long getId() {
 		return id;
@@ -49,5 +61,10 @@ public class Cliente {
 	}
 	public void setDataNascimento(LocalDate dataNascimento) {
 		this.dataNascimento = dataNascimento;
+	}
+
+	public ClienteDto toDto() {
+		return new ClienteDto(this.id, this.nome, this.cpf,
+				this.email, this.dataNascimento);
 	}
 }
