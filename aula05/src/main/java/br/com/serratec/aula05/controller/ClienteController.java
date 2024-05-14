@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.aula05.dto.ClienteDto;
 import br.com.serratec.aula05.service.ClienteService;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/clientes")
@@ -42,7 +43,7 @@ public class ClienteController {
 
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public ClienteDto inserir(@RequestBody ClienteDto cliente) {
+	public ClienteDto inserir(@Valid @RequestBody ClienteDto cliente) {
 		return servico.salvarCliente(cliente);
 	}
 	
