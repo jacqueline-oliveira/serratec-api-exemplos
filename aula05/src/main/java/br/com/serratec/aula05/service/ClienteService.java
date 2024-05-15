@@ -1,5 +1,6 @@
 package br.com.serratec.aula05.service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -55,6 +56,20 @@ public class ClienteService {
 		
 		clienteRepository.deleteById(id);
 		return true;
+	}
+
+	public List<ClienteDto> obterPorNascimento(String nascimento) {
+		return clienteRepository.findByDataNascimentoAfter(LocalDate.parse(nascimento)).stream()
+				.map(c -> new ClienteDto(c.getId(), c.getNome(), 
+						c.getCpf(), c.getEmail(), c.getDataNascimento()))
+				.toList();
+	}
+
+	public List<ClienteDto> obterPorNome(String nome) {
+		return clienteRepository.findByNomeContainingIgnoreCase(nome).stream()
+				.map(c -> new ClienteDto(c.getId(), c.getNome(), 
+						c.getCpf(), c.getEmail(), c.getDataNascimento()))
+				.toList();
 	}
 	
 	

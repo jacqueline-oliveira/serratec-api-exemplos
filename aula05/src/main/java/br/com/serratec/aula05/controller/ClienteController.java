@@ -31,6 +31,16 @@ public class ClienteController {
 	public ResponseEntity<List<ClienteDto>> listar(){
 		return ResponseEntity.ok(servico.obterTodos());
 	}
+	
+	@GetMapping("/nascimento")
+	public ResponseEntity<List<ClienteDto>> obterClientesPorNascimento(@RequestBody String nascimento){
+		return ResponseEntity.ok(servico.obterPorNascimento(nascimento));
+	}
+	
+	@GetMapping("/nome")
+	public ResponseEntity<List<ClienteDto>> obterClientePorNome(@RequestBody String nome){
+		return ResponseEntity.ok(servico.obterPorNome(nome));
+	}
 
 	@GetMapping("/{id}")
 	public ResponseEntity<ClienteDto> buscar(@PathVariable Long id) {
