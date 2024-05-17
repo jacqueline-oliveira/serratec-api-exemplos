@@ -1,14 +1,12 @@
 package br.org.serratec.streamer.dto;
 
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public record DadosEpisodio(
-		@JsonAlias("Episode") int numero,
-		@JsonAlias("Title") String titulo,
-		@JsonAlias("Released") String dataLancamento,
-		@JsonAlias("imdbRating") String avaliacao
-		) {
+public record DadosTemporada(
+		@JsonAlias("Episodes") List<DadosEpisodio> episodios) {
 
 }
