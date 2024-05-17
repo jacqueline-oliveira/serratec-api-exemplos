@@ -38,7 +38,16 @@ public class CatalogoService {
 		DadosTemporada dadosTemporada = conversor.converter(json, DadosTemporada.class);
 		Optional<Titulo> tituloEntity = repositorio.findByTituloIgnoreCase(dadosTemporada.titulo());
 		
-		if (tituloEntity.isPresent()) {
+		if (tituloEntity.isPresent()) {		
+			Long total = tituloEntity.get().getEpisodios().stream()
+					.filter(e -> e.getTemporada() == temporada)
+					.count();
+			
+			if (dadosTemporada.episodios().size() == total) {
+				return dadosTemporada;
+			}
+		
+			
 			List<Episodio> episodios = dadosTemporada.episodios().stream()
 					.map(e -> e.toEntity(temporada))
 					.collect(Collectors.toList());
