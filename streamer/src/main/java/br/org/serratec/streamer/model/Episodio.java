@@ -17,6 +17,7 @@ public class Episodio {
 	private Long id;
 	private int temporada;
 	private int numero;
+	private String descricao;
 	private LocalDate dataLancamento;
 	private Double avaliacao;
 	
@@ -29,6 +30,14 @@ public class Episodio {
 
 	public void setId(Long id) {
 		this.id = id;
+	}	
+
+	public String getDescricao() {
+		return descricao;
+	}
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
 
 	public int getTemporada() {

@@ -3,6 +3,7 @@ package br.org.serratec.streamer.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
@@ -24,7 +25,7 @@ public class Titulo {
 	@Enumerated(EnumType.STRING)
 	private Genero genero;
 	
-	@OneToMany(mappedBy = "titulo")
+	@OneToMany(mappedBy = "titulo", cascade = CascadeType.ALL)
 	private List<Episodio> episodios = new ArrayList<>();
 	
 	
@@ -58,6 +59,16 @@ public class Titulo {
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
+	
+	public List<Episodio> getEpisodios() {
+		return episodios;
+	}
+	public void setEpisodios(List<Episodio> episodios) {
+		episodios.forEach(e -> e.setTitulo(this));
+		this.episodios = episodios;
+	}
+	
+	
 	
 
 }
