@@ -68,15 +68,15 @@ public class LivroService {
 		if (livroEntity.isEmpty()) {
 			return Optional.of(LivroDto.toDto(livroEntity.get()));
 		}
-		;
 		return Optional.empty();
 	}
 
 	public Optional<LivroDto> atualizarLivro(Long id, @Valid LivroDto livro) {
-		Optional<Livro> livroEntity = repositorio.findById(id);
-		
-		if (livroEntity.isPresent()) {
-			return Optional.of(LivroDto.toDto(livroEntity.get()));
+		if (repositorio.existsById(id)) {
+			Livro livroEntity = livro.toEntity();
+			livroEntity.setId(id);
+			repositorio.save(livroEntity);
+			return Optional.of(LivroDto.toDto(livroEntity));
 		}
 		return Optional.empty();
 	}
