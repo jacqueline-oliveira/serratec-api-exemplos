@@ -2,6 +2,8 @@ package br.com.serratec.livraria.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -20,6 +22,7 @@ public class Autor {
 	@Embedded
 	private Endereco endereco;
 	@ManyToMany(mappedBy = "autores")
+	@JsonIgnore
 	private List<Livro> livros;
 	
 	public Long getId() {

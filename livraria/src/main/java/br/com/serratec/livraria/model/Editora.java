@@ -2,6 +2,11 @@ package br.com.serratec.livraria.model;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +28,7 @@ public class Editora {
 	@JoinColumn(name = "registro_id")
 	private RegistroFuncionamento registro;
 	@OneToMany(mappedBy = "editora")
+	@JsonIgnore
 	private List<Livro> livros;
 	
 	
@@ -48,6 +54,7 @@ public class Editora {
 		return livros;
 	}
 	public void setLivros(List<Livro> livros) {
+		livros.forEach(l -> l.setEditora(this));
 		this.livros = livros;
 	}
 
