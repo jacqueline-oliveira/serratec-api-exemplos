@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.serratec.livraria.dto.LivroCadastroDto;
 import br.com.serratec.livraria.dto.LivroDto;
+import br.com.serratec.livraria.dto.RelatorioDto;
 import br.com.serratec.livraria.service.LivroService;
 import jakarta.validation.Valid;
 
@@ -39,6 +40,11 @@ public class LivroController {
 			return new ResponseEntity<>(dto.get(), HttpStatus.FOUND);
 		}
 		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@GetMapping("/relatorio")
+	public ResponseEntity<List<RelatorioDto>> obterRelatorio() {
+		return new ResponseEntity<>(servico.obterRelatorio(), HttpStatus.OK);
 	}
 	
 	@PostMapping
