@@ -3,6 +3,7 @@ package br.com.serratec.livraria.model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,6 +13,7 @@ import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Transient;
 
 @Entity
 @Table(name = "livros")
@@ -30,6 +32,17 @@ public class Livro {
 	  inverseJoinColumns = @JoinColumn(name = "autor_id"))
 	private List<Autor> autores;
 	
+	@Transient
+	private String opiniao;
+	
+	
+	
+	public String getOpiniao() {
+		return opiniao;
+	}
+	public void setOpiniao(String opiniao) {
+		this.opiniao = opiniao;
+	}
 	public Long getId() {
 		return id;
 	}

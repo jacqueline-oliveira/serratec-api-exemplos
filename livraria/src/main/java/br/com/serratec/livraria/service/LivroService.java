@@ -32,12 +32,12 @@ public class LivroService {
 	private EditoraRepository editoraRepository;
 
 	public List<LivroDto> obterTodos() {
-		//return repositorio.findAll().stream().map(l -> LivroDto.toDto(l)).toList();
+		return repositorio.findAll().stream().map(l -> LivroDto.toDto(l)).toList();
 		//return repositorio.buscaPorAnoLancamentoMenor(2015).stream().map(l -> LivroDto.toDto(l)).toList();
 		//return repositorio.buscaPorEditoraId(1L).stream().map(l -> LivroDto.toDto(l)).toList();
 		
-		Optional<Autor> autor = autorRepositorio.findById(1L);
-		return repositorio.buscaPorAutor(autor.get()).stream().map(l -> LivroDto.toDto(l)).toList();
+//		Optional<Autor> autor = autorRepositorio.findById(1L);
+//		return repositorio.buscaPorAutor(autor.get()).stream().map(l -> LivroDto.toDto(l)).toList();
 	
 	}
 
